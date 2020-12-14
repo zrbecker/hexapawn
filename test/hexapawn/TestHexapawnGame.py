@@ -29,7 +29,7 @@ class TestHexapawnGame(unittest.TestCase):
         game.next_move()
         game.next_move()
         game.next_move()
-        winner, _ = game.next_move()
+        winner, _, _ = game.next_move()
 
         self.assertEqual(winner, WHITE)
 
@@ -43,7 +43,7 @@ class TestHexapawnGame(unittest.TestCase):
         game.next_move()
         game.next_move()
         game.next_move()
-        winner, _ = game.next_move()
+        winner, _, _ = game.next_move()
 
         self.assertEqual(winner, BLACK)
 
@@ -58,7 +58,7 @@ class TestHexapawnGame(unittest.TestCase):
         game.next_move()
         game.next_move()
         game.next_move()
-        winner, _ = game.next_move()
+        winner, _, _ = game.next_move()
 
         self.assertEqual(winner, BLACK)
 
@@ -76,6 +76,6 @@ class TestHexapawnGame(unittest.TestCase):
         game.next_move()
         game.next_move()
         game.next_move()
-        winner, _ = game.next_move()
+        winner, _, _ = game.next_move()
 
         self.assertEqual(winner, WHITE)
