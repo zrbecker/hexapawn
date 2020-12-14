@@ -1,4 +1,11 @@
-from hexapawn.HexapawnConstants import EMPTY, BLACK, WHITE, SIZE
+from hexapawn.HexapawnConstants import (
+    EMPTY,
+    BLACK,
+    WHITE,
+    SIZE,
+    BLACK_DIRECTION,
+    WHITE_DIRECTION,
+)
 from hexapawn.HexapawnException import HexapawnException
 
 DEFAULT_BOARD = [
@@ -12,9 +19,6 @@ DEFAULT_BOARD = [
     WHITE,
     WHITE,
 ]
-
-BLACK_DIRECTION = 1
-WHITE_DIRECTION = -1
 
 
 class HexapawnBoard:
@@ -90,6 +94,16 @@ class HexapawnBoard:
         ):
             return True
         return False
+
+    def check_is_valid_move(self, start_row, start_col, end_row, end_col, pawn_color):
+        current_pawn = self.get_pawn(start_row, start_col)
+        if current_pawn == EMPTY or current_pawn == None:
+            return False
+        if end_row >= SIZE or end_col >= SIZE:
+            return False
+        return self._check_is_valid_move(
+            start_row, start_col, end_row, end_col, current_pawn
+        )
 
     def _check_is_valid_move(self, start_row, start_col, end_row, end_col, pawn_color):
         return self._check_is_valid_normal_move(

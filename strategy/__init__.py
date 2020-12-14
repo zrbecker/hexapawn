@@ -1,1 +1,2 @@
 from strategy.get_console_move import get_console_move
+from strategy.get_random_move import get_random_move

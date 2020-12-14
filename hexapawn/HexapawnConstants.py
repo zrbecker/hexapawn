@@ -8,3 +8,6 @@ PRETTY_NAME = {
     BLACK: "Black",
     WHITE: "White",
 }
+
+BLACK_DIRECTION = 1
+WHITE_DIRECTION = -1

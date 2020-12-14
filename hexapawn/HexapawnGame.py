@@ -44,6 +44,8 @@ class HexapawnGame:
             print(self.board)
             winner, error, message = self.next_move()
             gameover = winner is not None
+            if gameover:
+                print(self.board)
             if gameover or error:
                 print(message)
                 print()
