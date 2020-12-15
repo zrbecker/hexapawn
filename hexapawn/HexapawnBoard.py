@@ -33,7 +33,7 @@ class HexapawnBoard:
             self.board = DEFAULT_BOARD[:]
 
     def get_pawn(self, row, col):
-        if row >= SIZE or col >= SIZE:
+        if row < 0 or col < 0 or row >= SIZE or col >= SIZE:
             return None
         return self.board[row * SIZE + col]
 
@@ -46,7 +46,7 @@ class HexapawnBoard:
         current_pawn = self.get_pawn(start_row, start_col)
         if current_pawn == EMPTY or current_pawn == None:
             raise HexapawnException("No pawn at that position")
-        if end_row >= SIZE or end_col >= SIZE:
+        if end_row < 0 or end_col < 0 or end_row >= SIZE or end_col >= SIZE:
             raise HexapawnException("Cannot move pawn off the board")
 
         if not self._check_is_valid_move(
@@ -95,11 +95,11 @@ class HexapawnBoard:
             return True
         return False
 
-    def check_is_valid_move(self, start_row, start_col, end_row, end_col, pawn_color):
+    def check_is_valid_move(self, start_row, start_col, end_row, end_col):
         current_pawn = self.get_pawn(start_row, start_col)
         if current_pawn == EMPTY or current_pawn == None:
             return False
-        if end_row >= SIZE or end_col >= SIZE:
+        if end_row < 0 or end_col < 0 or end_row >= SIZE or end_col >= SIZE:
             return False
         return self._check_is_valid_move(
             start_row, start_col, end_row, end_col, current_pawn

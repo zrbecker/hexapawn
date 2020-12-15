@@ -4,6 +4,18 @@ from hexapawn import HexapawnBoard, HexapawnException, EMPTY, WHITE, BLACK
 
 
 class TestHexapawnBoard(unittest.TestCase):
+    def test_check_is_valid_move(self):
+        board = HexapawnBoard()
+        self.assertTrue(board.check_is_valid_move(0, 0, 1, 0))
+        self.assertFalse(board.check_is_valid_move(0, 0, 1, 1))
+
+    def test_check_is_valid_move_returns_false_when_out_of_bounds(self):
+        board = HexapawnBoard()
+        self.assertFalse(board.check_is_valid_move(-100, -100, 1, 0))
+        self.assertFalse(board.check_is_valid_move(100, 100, 1, 0))
+        self.assertFalse(board.check_is_valid_move(0, 0, 100, 100))
+        self.assertFalse(board.check_is_valid_move(0, 0, -100, -100))
+
     def test_move_white_pawn(self):
         board = HexapawnBoard()
         board.move_pawn(2, 0, 1, 0)
@@ -15,6 +27,20 @@ class TestHexapawnBoard(unittest.TestCase):
         board.move_pawn(0, 0, 1, 0)
         self.assertEqual(board.get_pawn(0, 0), EMPTY)
         self.assertEqual(board.get_pawn(1, 0), BLACK)
+
+    def test_move_off_board(self):
+        board = HexapawnBoard()
+        with self.assertRaises(HexapawnException):
+            board.move_pawn(0, 0, 100, 100)
+        with self.assertRaises(HexapawnException):
+            board.move_pawn(0, 0, -100, -100)
+
+    def test_move_pawn_from_off_board(self):
+        board = HexapawnBoard()
+        with self.assertRaises(HexapawnException):
+            board.move_pawn(0, -100, 0, 0)
+        with self.assertRaises(HexapawnException):
+            board.move_pawn(1000, 0, 0, 0)
 
     def test_cannot_move_forward_when_blocked(self):
         board = HexapawnBoard()
